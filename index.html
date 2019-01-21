@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+
+	<!-- Jquery -->
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+
+	<!-- Шрифт -->
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700">
+    <link rel="stylesheet" href="https://code.cdn.mozilla.net/fonts/fira.css">
+	<link href="https://fonts.googleapis.com/css?family=Exo+2" rel="stylesheet">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+
+	<!-- Иконки -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+
+	<!-- Подключение стилей на страницу -->
+	<link rel="stylesheet" type="text/css" href="assets/style.css">
+
+	<script src="https://vk.com/js/api/openapi.js?160" type="text/javascript"></script>
+</head>
+<body>
+	<div id="game">
+		<div class="map">
+			<svg version="1.1" id="map" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="375.221px" height="321.33px" viewBox="0 0 375.221 321.33" enable-background="new 0 0 375.221 321.33" xml:space="preserve"></svg>
+		</div>
+
+		<div class="buttons">
+			<div class="block" id="button-C" onclick="button('C');">
+				<div class="key">C</div>
+				<img src="assets/img/buttons/knight.svg" width="40" height="40" fill="#847975">
+			</div>
+
+			<div class="block tooltip" id="button-1" onclick="button('1')">
+				<div class="key">1</div>
+				<img src="assets/img/buttons/1.svg" id="magic-1" width="40" height="40" fill="#847975">
+				<div class="timer" id="button-1-timer">5</div>
+			</div>
+			<div class="block tooltip" id="button-2" onclick="button('2')">
+				<div class="key">2</div>
+				<img src="assets/img/buttons/2.svg" id="magic-2" width="40" height="40" fill="#847975">
+				<div class="timer" id="button-2-timer">5</div>
+			</div>
+			<div class="block tooltip" id="button-3" onclick="button('3')">
+				<div class="key">3</div>
+				<img src="assets/img/buttons/3.svg" id="magic-3" width="40" height="40" fill="#847975">
+				<div class="timer" id="button-3-timer">5</div>
+			</div>
+			<div class="block tooltip" id="button-4" onclick="button('4')">
+				<div class="key">4</div>
+				<img src="assets/img/buttons/4.svg" id="magic-4" width="40" height="40" fill="#847975">
+				<div class="timer" id="button-4-timer">5</div>
+			</div>
+			<div class="block tooltip" id="button-5" onclick="button('5')">
+				<div class="key">5</div>
+				<img src="assets/img/buttons/5.svg" id="magic-5" width="40" height="40" fill="#847975">
+				<div class="timer" id="button-5-timer">5</div>
+			</div>
+			<div class="block tooltip" id="button-6" onclick="button('6')">
+				<div class="key">6</div>
+				<img src="assets/img/buttons/6.svg" id="magic-6" width="40" height="40" fill="#847975">
+				<div class="timer" id="button-6-timer">5</div>
+			</div>
+			
+			<div class="block tooltip" title='<b>Разрушение</b><p>Способность раз за игру, которая позволяет разрушить одно из препятствий для передвижения(кактусы, горы)</p>' id="button-Q" onclick="button('Q')">
+				<div class="key">Q</div>
+				<img src="assets/img/buttons/q.svg" width="40" height="40" fill="#847975">
+			</div>
+			<div class="block" id="button-W">
+				<div class="key">W</div>
+				<img src="assets/img/buttons/w.svg" width="40" height="40" fill="#847975">
+			</div>
+			<div class="block" id="button-E">
+				<div class="key">E</div>
+				<img src="assets/img/buttons/e.svg" width="40" height="40" fill="#847975">
+			</div>
+			<div class="block tooltip" title='<b>Передвижение</b><p>Передвинуть героя на ближайшую клетку</p>' id="button-M" onclick="button('M');">
+				<div class="key">M</div>
+				<img src="assets/img/buttons/m.svg" width="40" height="40" fill="#847975">
+			</div>
+		</div>
+
+		<div class="heroes">
+			<div class="content">
+				<div class="item" id="hero-1" onclick="_hero_chose('1')">
+					<div class="image">
+						<img src="assets/img/heroes/ifrit.svg">
+					</div>
+					<div class="body">
+						<b>Ифрит</b> <img src="assets/img/fire.svg" width="16" height="16">
+						<br/>
+						1 уровень<br/>
+						<div class="chose">Выбрать <span><img src="assets/img/right-arrow.svg" width="10" height="10"></span></div>
+					</div>
+				</div>
+				<div class="item" id="hero-2" onclick="_hero_chose('2')">
+					<div class="image">
+						<img src="assets/img/heroes/gargoyle.svg">
+					</div>
+					<div class="body">
+						<b>Горгулья</b> <img src="assets/img/fire.svg" width="16" height="16">
+						<br/>
+						1 уровень<br/>
+						<div class="chose">Выбрать <span><img src="assets/img/right-arrow.svg" width="10" height="10"></span></div>
+					</div>
+				</div>
+				<div class="item" id="hero-3" onclick="_hero_chose('3')">
+					<div class="image">
+						<img src="assets/img/heroes/unfriendly-fire.svg">
+					</div>
+					<div class="body">
+						<b>Огонь</b> <img src="assets/img/fire.svg" width="16" height="16">
+						<br/>
+						1 уровень<br/>
+						<div class="chose">Выбрать <span><img src="assets/img/right-arrow.svg" width="10" height="10"></span></div>
+					</div>
+				</div>
+				<div class="item" id="hero-4" onclick="_hero_chose('4')">
+					<div class="image">
+						<img src="assets/img/heroes/dragon-head.svg">
+					</div>
+					<div class="body">
+						<b>Ледяной дракон</b> <img src="assets/img/winter.svg" width="16" height="16">
+						<br/>
+						1 уровень<br/>
+						<div class="chose">Выбрать <span><img src="assets/img/right-arrow.svg" width="10" height="10"></span></div>
+					</div>
+				</div>
+				<div class="item" id="hero-5" onclick="_hero_chose('5')">
+					<div class="image">
+						<img src="assets/img/heroes/ice-golem.svg">
+					</div>
+					<div class="body">
+						<b>Ледяной голем</b> <img src="assets/img/winter.svg" width="16" height="16">
+						<br/>
+						1 уровень<br/>
+						<div class="chose">Выбрать <span><img src="assets/img/right-arrow.svg" width="10" height="10"></span></div>
+					</div>
+				</div>
+				<div class="item" id="hero-6" onclick="_hero_chose('6')">
+					<div class="image">
+						<img src="assets/img/heroes/golem-head.svg">
+					</div>
+					<div class="body">
+						<b>Голем</b> <img src="assets/img/winter.svg" width="16" height="16">
+						<br/>
+						1 уровень<br/>
+						<div class="chose">Выбрать <span><img src="assets/img/right-arrow.svg" width="10" height="10"></span></div>
+					</div>
+				</div>
+				<div class="item" id="hero-7" onclick="_hero_chose('7')">
+					<div class="image">
+						<img src="assets/img/heroes/death-zone.svg">
+					</div>
+					<div class="body">
+						<b>Смертельный голем</b> <img src="assets/img/chemical.svg" width="16" height="16">
+						<br/>
+						1 уровень<br/>
+						<div class="chose">Выбрать <span><img src="assets/img/right-arrow.svg" width="10" height="10"></span></div>
+					</div>
+				</div>
+				<div class="item" id="hero-8" onclick="_hero_chose('8')">
+					<div class="image">
+						<img src="assets/img/heroes/kenku.svg">
+					</div>
+					<div class="body">
+						<b>Кенку</b> <img src="assets/img/chemical.svg" width="16" height="16">
+						<br/>
+						1 уровень<br/>
+						<div class="chose">Выбрать <span><img src="assets/img/right-arrow.svg" width="10" height="10"></span></div>
+					</div>
+				</div>
+				<div class="item" id="hero-9" onclick="_hero_chose('9')">
+					<div class="image">
+						<img src="assets/img/heroes/grim-reaper.svg">
+					</div>
+					<div class="body">
+						<b>Смерть</b> <img src="assets/img/chemical.svg" width="16" height="16">
+						<br/>
+						1 уровень<br/>
+						<div class="chose">Выбрать <span><img src="assets/img/right-arrow.svg" width="10" height="10"></span></div>
+					</div>
+				</div>
+				<div class="item" id="hero-10" onclick="_hero_chose('10')">
+					<div class="image">
+						<img src="assets/img/heroes/half-dead.svg">
+					</div>
+					<div class="body">
+						<b>Череп</b> <img src="assets/img/chemical.svg" width="16" height="16">
+						<br/>
+						1 уровень<br/>
+						<div class="chose">Выбрать <span><img src="assets/img/right-arrow.svg" width="10" height="10"></span></div>
+					</div>
+				</div>
+				<div class="item" id="hero-11" onclick="_hero_chose('11')">
+					<div class="image">
+						<img src="assets/img/heroes/evil-tree.svg">
+					</div>
+					<div class="body">
+						<b>Коварное дерево</b> <img src="assets/img/druid.svg" width="16" height="16">
+						<br/>
+						1 уровень<br/>
+						<div class="chose">Выбрать <span><img src="assets/img/right-arrow.svg" width="10" height="10"></span></div>
+					</div>
+				</div>
+				<div class="item" id="hero-12" onclick="_hero_chose('12')">
+					<div class="image">
+						<img src="assets/img/heroes/horned-reptile.svg">
+					</div>
+					<div class="body">
+						<b>Рогатая смерть</b> <img src="assets/img/druid.svg" width="16" height="16">
+						<br/>
+						1 уровень<br/>
+						<div class="chose">Выбрать <span><img src="assets/img/right-arrow.svg" width="10" height="10"></span></div>
+					</div>
+				</div>
+				<div class="item" id="hero-13" onclick="_hero_chose('13')">
+					<div class="image">
+						<img src="assets/img/heroes/pick-of-destiny.svg">
+					</div>
+					<div class="body">
+						<b>Выбор судьбы</b> <img src="assets/img/druid.svg" width="16" height="16">
+						<br/>
+						1 уровень<br/>
+						<div class="chose">Выбрать <span><img src="assets/img/right-arrow.svg" width="10" height="10"></span></div>
+					</div>
+				</div>
+			</div>
+			<div class="info"><b>Герои</b><br/>Нажмите ещё раз,<br/> чтобы закрыть</div>
+		</div>
+
+		<div class="hero-stats">
+			<div class="header" id="stats-header">
+				<div><b>?</b> <img id="stats-img" src="assets/img/fire.svg" width="16" height="16"></div>
+				<!-- <div class="close-button">x</div> -->
+				<div>1 уровень</div>
+				<div>Обычный</div>
+			</div>
+			<hr/>
+			<div class="stats" id="stats1">
+				<div class="stat"><div>Сила</div><div class="stat-value">?</div></div>
+				<div class="stat"><div>Интеллект</div><div class="stat-value">?</div></div>
+				<div class="stat"><div>Ловкость</div><div class="stat-value">?</div></div>
+				<div class="stat"><div>Мудрость</div><div class="stat-value">?</div></div>
+				<div class="stat"><div>Телосложение</div><div class="stat-value">?</div></div>
+			</div>
+			<hr/>
+			<div class="stats" id="stats2">
+				<div class="stat"><div>Сила атаки</div><div class="stat-value">?</div></div>
+				<div class="stat"><div>Защита</div><div class="stat-value">?</div></div>
+				<div class="stat"><div>Магический урон</div><div class="stat-value">?</div></div>
+				<div class="stat"><div>Сопротивление магии</div><div class="stat-value">?</div></div>
+				<div class="stat"><div>Скорость атаки</div><div class="stat-value">?</div></div>
+				<div class="stat"><div>Вероятность уворота</div><div class="stat-value">?</div></div>
+				<div class="stat"><div>Вероятность крита</div><div class="stat-value">?</div></div>
+			</div>
+		</div>
+
+		<div class="player-info">
+			<div class="name" id="you-name">?</div>
+			<div class="container">
+				<div class="type"><img id="you-img" src="https://vk.com/images/camera_50.png?ava=1" alt=""></div>
+				<div class="info">
+					<div class="progress-back" id="you_health">
+						0/0
+						<div class="progress-health" id="you_health_progress" style="width:0%;"></div>
+					</div>
+					<div class="progress-back" id="you_mana" style="margin-top:5px;">
+						0/0
+						<div class="progress-mana" id="you_mana_progress" style="margin-top:5px;width:0%;"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="player-info-r">
+			<div class="name" id="enemy-name">?</div>
+			<div class="container">
+				<div class="info">
+					<div class="progress-back" id="enemy_health">
+						0/0
+						<div class="progress-health" id="enemy_health_progress" style="width:0%;"></div>
+					</div>
+					<div class="progress-back" id="enemy_mana" style="margin-top:5px;">
+						0/0
+						<div class="progress-mana" id="enemy_mana_progress" style="margin-top:5px;width:0%;"></div>
+					</div>
+				</div>
+				<div class="type"><img id="enemy-img" src="https://sun9-32.userapi.com/c840530/v840530364/86e77/4M8GSJnGijo.jpg?ava=1" alt=""></div>
+			</div>
+		</div>
+	</div>
+
+	<div id="menu">
+		<div class="left">
+			<div class="block" style="text-align: center;"><b>Вансович Дмитрий</b>, 7 героев</div>
+			<div class="block clearfix" style="margin-top:-1px;">
+				<div style="float:left;">12 побед</div>
+				1 ничья
+				<div style="float:right;">2 поражения</div>
+			</div>
+			<div style="display:flex">
+				<div style="margin-top:4%;width:47%;margin-right:3%;">
+					<div class="block" style="text-align:center;">
+						<img src="assets/img/heroes/ifrit.svg" width="50px">
+						<img src="assets/img/heroes/kenku.svg" width="50px">
+						<img src="assets/img/heroes/ice-golem.svg" width="50px">
+						<img src="assets/img/heroes/evil-tree.svg" width="50px">
+					</div>
+					<div class="block" style="margin-top:-1px;text-align:center;">Подробнее</div>
+
+					<div class="block" style="margin-top:8%;">
+						Мировая статистика
+						<hr/>
+						<div class="stats" id="stats1">
+							<div class="stat"><div>Всего игроков</div><div class="stat-value">?</div></div>
+							<div class="stat"><div>Игроков онлайн</div><div class="stat-value">?</div></div>
+							<div class="stat"><div>Всего боев сыграно</div><div class="stat-value">?</div></div>
+							<div class="stat"><div>Доступые бои</div><div class="stat-value">?</div></div>
+						</div>
+					</div>
+				</div>
+				<div class="block tournaments" style="margin-top:4%;width:47%;margin-left:3%;">Недоступно</div>
+			</div>
+		</div>
+		<div class="right">
+			<img src="assets/img/exorum.png" class="logo">
+			<div class="menu">
+				<img src="assets/map/tile1_1.png">
+				<img onmouseover="menu_hover(1)" onclick="to_menu('game-search')" class="tooltip" title="<b>Найти игру</b><p>Выбрать доступный бой либо создать свой</p>" onmouseleave="menu_unhover(1)" id="menu-item-1" src="assets/img/menu/menu1.png">
+				<img src="assets/map/tile2_1.png">
+				<img onmouseover="menu_hover(2)" class="tooltip" title="<b>Магазин</b><p>Покупка и продажа игровых предметов</p>" onmouseleave="menu_unhover(2)" id="menu-item-2" src="assets/img/menu/menu2.png">
+				<img src="assets/map/tile0.png">
+			</div>
+		</div>
+	</div>
+
+	<div id="game-search">
+		<div class="left">
+			<div class="block">
+				<img src="assets/img/exorum.png" height="100"><div id="find-text">Поиск игры</div>
+			</div>
+		</div>
+		<div class="right" id="message">
+			<div class="block message">
+				<img src="assets/img/magic/fire/1.svg" width="50" id="slider-image"><br/>
+				<div id="slider-text">
+					<b>Удар топором <img src="assets/img/fire.svg" width="16" height="16"></b>
+					<p>Наносит противнику на ближайшей клетке <span class="red">21</span> единицу урона</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- socket.io -->
+	<script src="assets/socket.io.js" type="text/javascript"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
+	<!-- JS страницы -->
+	<script src="https://vk.com/js/api/xd_connection.js?2"  type="text/javascript"></script>
+
+	<script src="heroes/info.js" type="text/javascript"></script>
+	<script src="heroes/magic.js" type="text/javascript"></script>
+
+	<script src="assets/init.js" type="text/javascript"></script>
+	<script src="assets/game.js" type="text/javascript"></script>
+	<script src="assets/map.js" type="text/javascript"></script>
+	<script src="assets/game-search.js" type="text/javascript"></script>
+	<script src="assets/tooltips.js" type="text/javascript"></script>
+	<script src="assets/buttons.js" type="text/javascript"></script>
+
+	<script src="assets/sockets.js" type="text/javascript"></script>
+</body>
+</html>
