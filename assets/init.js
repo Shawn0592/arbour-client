@@ -50,8 +50,11 @@ socket.on('connect', function(data){
      you.avatar = data.response[0].photo_100;
 
      socket.emit('add_user', {key: my_key, info: you});
+      $('#vk-name').text(`${you.last_name} ${you.first_name}`);
    });
   },'5.80');
+  //socket.emit('add_user', {key: my_key, info: you});
+  //$('#vk-name').text(`${you.last_name} ${you.first_name}`);
 });
 var game = null;
 

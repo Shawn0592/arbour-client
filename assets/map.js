@@ -277,6 +277,36 @@ function drawMap(param){
 		}
 
 		deletedHeroTile = null;
+	} else if(_hero_chosed_tile && !MAP[_hero_chosed_tile].hero){
+		_hero_chosed = false;
+		deletedHeroTile = _hero_chosed_tile;
+		_hero_chosed_tile = '';
+		_hero_move = false;
+
+		if(heroes < 3 && _hero_chosed == false)
+  			document.getElementsByClassName('block')[0].style.bottom = '10px';
+
+		document.getElementsByClassName('block')[1].style.bottom = '-60px';
+		document.getElementsByClassName('block')[2].style.bottom = '-60px';
+		document.getElementsByClassName('block')[3].style.bottom = '-60px';
+		document.getElementsByClassName('block')[4].style.bottom = '-60px';
+		document.getElementsByClassName('block')[5].style.bottom = '-60px';
+		document.getElementsByClassName('block')[6].style.bottom = '-60px';
+
+		document.getElementsByClassName('block')[8].style.bottom = '-60px';
+		document.getElementsByClassName('block')[9].style.bottom = '-60px';
+
+		document.getElementsByClassName('block')[10].style.bottom = '-60px';
+
+		$('.hero-stats').css('left','-300px');
+		document.getElementById(deletedHeroTile).href.baseVal = 'assets/map/tile0.png';
+		$('#'+deletedHeroTile).css('z-index','1');
+
+		for(var i in opacities){
+			opacities[i].opacity = 1;
+		}
+
+		deletedHeroTile = null;
 	}
 
 	document.getElementsByTagName('svg')[0].innerHTML = ``;

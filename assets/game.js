@@ -141,13 +141,13 @@ function updatePlayersParams(){
 		`);
 	} else {
 		$('#enemy_health').html(`
-			${you_health}/${enemy_health_all}
+			${enemy_health}/${enemy_health_all}
 			<div class="progress-health" id="enemy_health_progress" style="width:0%;"></div>
 		`);
 	}
 	if(enemy_mana_all != 0){
 		$('#enemy_mana').html(`
-			${you_mana}/${enemy_mana_all}
+			${enemy_mana}/${enemy_mana_all}
 			<div class="progress-mana" id="enemy_mana_progress" style="width:${enemy_mana*100/enemy_mana_all}%;"></div>
 		`);
 	} else {
