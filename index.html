@@ -297,7 +297,7 @@
 			<div class="block" style="text-align: center;"><b id="vk-name">? ?</b>, 7 героев</div>
 			<div class="block clearfix" style="margin-top:-1px;">
 				<div style="float:left;">0 побед</div>
-				0 ничьи
+				12 <img src="assets/img/trophy_full.svg" width="12" height="12">
 				<div style="float:right;">0 поражении</div>
 			</div>
 			<div style="display:flex">
@@ -325,7 +325,7 @@
 			</div>
 		</div>
 		<div class="right">
-			<img src="assets/img/exorum.png" class="logo">
+			<img src="assets/img/arbour.png" class="logo">
 			<div class="menu">
 				<img src="assets/map/tile1_1.png">
 				<img onmouseover="menu_hover(1)" onclick="to_menu('game-search')" class="tooltip" title="<b>Найти игру</b><p>Выбрать доступный бой либо создать свой</p>" onmouseleave="menu_unhover(1)" id="menu-item-1" src="assets/img/menu/menu1.png">
@@ -339,7 +339,7 @@
 	<div id="game-search">
 		<div class="left">
 			<div class="block">
-				<img src="assets/img/exorum.png" height="100"><div id="find-text">Поиск игры</div>
+				<img src="assets/img/arbour.png" height="100"><div id="find-text">Поиск игры</div>
 			</div>
 		</div>
 		<div class="right" id="message">
@@ -353,17 +353,141 @@
 		</div>
 	</div>
 
+	<div id="tutorial">
+		<div class="map">
+			<svg version="1.1" id="map" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="375.221px" height="321.33px" viewBox="0 0 375.221 321.33" enable-background="new 0 0 375.221 321.33" xml:space="preserve"></svg>
+		</div>
+
+		<div class="buttons">
+			<div class="block-tutorial" id="button-C" onclick="button('C');">
+				<div class="key">C</div>
+				<img src="assets/img/buttons/knight.svg" width="40" height="40" fill="#847975">
+			</div>
+
+			<div class="block-tutorial tooltip" id="button-tutorial-1" onclick="button('1')">
+				<div class="key">1</div>
+				<img src="assets/img/buttons/1.svg" id="magic-tutorial-1" width="40" height="40" fill="#847975">
+				<div class="timer" id="button-1-timer">5</div>
+			</div>
+			<div class="block-tutorial tooltip" id="button-tutorial-2" onclick="button('2')">
+				<div class="key">2</div>
+				<img src="assets/img/buttons/2.svg" id="magic-tutorial-2" width="40" height="40" fill="#847975">
+				<div class="timer" id="button-2-timer">5</div>
+			</div>
+			<div class="block-tutorial tooltip" id="button-tutorial-3" onclick="button('3')">
+				<div class="key">3</div>
+				<img src="assets/img/buttons/3.svg" id="magic-tutorial-3" width="40" height="40" fill="#847975">
+				<div class="timer" id="button-3-timer">5</div>
+			</div>
+			<div class="block-tutorial tooltip" id="button-tutorial-4" onclick="button('4')">
+				<div class="key">4</div>
+				<img src="assets/img/buttons/4.svg" id="magic-tutorial-4" width="40" height="40" fill="#847975">
+				<div class="timer" id="button-4-timer">5</div>
+			</div>
+			<div class="block-tutorial tooltip" id="button-tutorial-5" onclick="button('5')">
+				<div class="key">5</div>
+				<img src="assets/img/buttons/5.svg" id="magic-tutorial-5" width="40" height="40" fill="#847975">
+				<div class="timer" id="button-5-timer">5</div>
+			</div>
+			<div class="block-tutorial tooltip" id="button-tutorial-6" onclick="button('6')">
+				<div class="key">6</div>
+				<img src="assets/img/buttons/6.svg" id="magic-tutorial-6" width="40" height="40" fill="#847975">
+				<div class="timer" id="button-6-timer">5</div>
+			</div>
+			
+			<div class="block-tutorial tooltip" title='<b>Разрушение</b><p>Способность раз за игру, которая позволяет разрушить одно из препятствий для передвижения(кактусы, горы)</p>' id="button-Q" onclick="button('Q')">
+				<div class="key">Q</div>
+				<img src="assets/img/buttons/q.svg" width="40" height="40" fill="#847975">
+			</div>
+			<div class="block-tutorial" id="button-W">
+				<div class="key">W</div>
+				<img src="assets/img/buttons/w.svg" width="40" height="40" fill="#847975">
+			</div>
+			<div class="block-tutorial" id="button-E">
+				<div class="key">E</div>
+				<img src="assets/img/buttons/e.svg" width="40" height="40" fill="#847975">
+			</div>
+			<div class="block-tutorial tooltip" title='<b>Передвижение</b><p>Передвинуть героя на ближайшую клетку</p>' id="button-M" onclick="button('M');">
+				<div class="key">M</div>
+				<img src="assets/img/buttons/m.svg" width="40" height="40" fill="#847975">
+			</div>
+		</div>
+
+		<div class="heroes-tutorial">
+			<div class="content">
+				<div class="item" id="hero-3" onclick="_hero_chose('3')">
+					<div class="image">
+						<img src="assets/img/heroes/unfriendly-fire.svg">
+					</div>
+					<div class="body">
+						<b>Огонь</b> <img src="assets/img/fire.svg" width="16" height="16">
+						<br/>
+						1 уровень<br/>
+						<div class="chose">Выбрать <span><img src="assets/img/right-arrow.svg" width="10" height="10"></span></div>
+					</div>
+				</div>
+			</div>
+			<div class="info"><b>Герои</b><br/>Нажмите ещё раз,<br/> чтобы закрыть</div>
+		</div>
+
+		<div class="hero-stats-tutorial">
+			<div class="header" id="stats-header-tutorial">
+				<div><b>?</b> <img id="stats-img" src="assets/img/fire.svg" width="16" height="16"></div>
+				<!-- <div class="close-button">x</div> -->
+				<div>1 уровень</div>
+				<div>Обычный</div>
+			</div>
+			<hr/>
+			<div class="stats" id="stats1">
+				<div class="stat-tutorial"><div>Сила</div><div class="stat-value-tutorial">?</div></div>
+				<div class="stat-tutorial"><div>Интеллект</div><div class="stat-value-tutorial">?</div></div>
+				<div class="stat-tutorial"><div>Ловкость</div><div class="stat-value-tutorial">?</div></div>
+				<div class="stat-tutorial"><div>Мудрость</div><div class="stat-value-tutorial">?</div></div>
+				<div class="stat-tutorial"><div>Телосложение</div><div class="stat-value-tutorial">?</div></div>
+			</div>
+			<hr/>
+			<div class="stats" id="stats2">
+				<div class="stat-tutorial"><div>Сила атаки</div><div class="stat-value-tutorial">?</div></div>
+				<div class="stat-tutorial"><div>Защита</div><div class="stat-value-tutorial">?</div></div>
+				<div class="stat-tutorial"><div>Магический урон</div><div class="stat-value-tutorial">?</div></div>
+				<div class="stat-tutorial"><div>Сопротивление магии</div><div class="stat-value-tutorial">?</div></div>
+				<div class="stat-tutorial"><div>Скорость атаки</div><div class="stat-value-tutorial">?</div></div>
+				<div class="stat-tutorial"><div>Вероятность уворота</div><div class="stat-value-tutorial">?</div></div>
+				<div class="stat-tutorial"><div>Вероятность крита</div><div class="stat-value-tutorial">?</div></div>
+			</div>
+		</div>
+
+		<div class="judge" id="judge">
+			<div class="judge-content">
+				<div class="left">
+					<img src="assets/img/judge.svg" width="100">
+				</div>
+				<div class="right">
+					<div class="block" id="judge-block">
+						<p id="judge-text"></p>
+					</div>
+					<div class="image"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<!-- socket.io -->
 	<script src="assets/socket.io.js" type="text/javascript"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 
 	<!-- JS страницы -->
 	<script src="https://vk.com/js/api/xd_connection.js?2"  type="text/javascript"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/1.1.1/typed.min.js" type="text/javascript"></script>
+
+	<script src="assets/init.js" type="text/javascript"></script>
+
+	<script src="assets/tutorial_scenes.js" type="text/javascript"></script>
+	<script src="assets/tutorial.js" type="text/javascript"></script>
 
 	<script src="heroes/info.js" type="text/javascript"></script>
 	<script src="heroes/magic.js" type="text/javascript"></script>
 
-	<script src="assets/init.js" type="text/javascript"></script>
 	<script src="assets/game.js" type="text/javascript"></script>
 	<script src="assets/map.js" type="text/javascript"></script>
 	<script src="assets/game-search.js" type="text/javascript"></script>
