@@ -224,7 +224,7 @@ function tutorial_action(i){
 						document.getElementsByClassName('block-tutorial')[9].style.bottom = '-60px'; // E
 						document.getElementsByClassName('block-tutorial')[10].style.bottom = '-60px'; // M
 
-						VK.api('storage.set', {key: "tutorial_complited", value: "1"}, function(response){
+						VK.api('storage.set', {key: "tutorial_complited1", value: "1"}, function(response){
 							to_menu('menu');
 						});
 					}

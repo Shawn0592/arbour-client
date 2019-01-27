@@ -34,10 +34,7 @@ var you_key = 123;
 var enemy_key = 321;
 
 var deletedHeroTile = null;
-
-var tutorial_mode = true;
-
-var tutorial_complited = null;
+var tutorial_mode = false;
 
 $(document).ready(function(){
   $('[data-toggle="tooltip"]').tooltip();   

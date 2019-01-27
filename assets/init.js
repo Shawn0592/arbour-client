@@ -52,7 +52,7 @@ socket.on('connect', function(data){
       socket.emit('add_user', {key: my_key, info: you});
       $('#vk-name').text(`${you.last_name} ${you.first_name}`);
       
-      VK.api('storage.get', {key: "tutorial_complited"}, function(res){
+      VK.api('storage.get', {key: "tutorial_complited1"}, function(res){
         if(res.response == "1"){
           to_menu('menu');
         } else if(!res.response){

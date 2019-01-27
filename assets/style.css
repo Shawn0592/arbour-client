@@ -542,9 +542,9 @@ hr {
 	width: 1000px;
 	height: 580px;
 	position: fixed;
-	background-color: rgba(235, 219, 183, .7);
-	text-align: center;
+	background-color: rgba(235, 219, 183, .85);
 	justify-content: center;
+	pointer-events: none;
 }
 
 .judge-content {
