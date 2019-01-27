@@ -42,19 +42,33 @@ var you = {
 };
 socket.on('connect', function(data){
   VK.init(function(){
-   VK.api('users.get', {fields: "photo_100"}, function(data){
-     you.first_name = data.response[0].first_name;
-     you.last_name = data.response[0].last_name;
-     you.name = data.response[0].first_name+' '+data.response[0].last_name;
-     you.id = data.response[0].id;
-     you.avatar = data.response[0].photo_100;
+    VK.api('users.get', {fields: "photo_100"}, function(data){
+      you.first_name = data.response[0].first_name;
+      you.last_name = data.response[0].last_name;
+      you.name = data.response[0].first_name+' '+data.response[0].last_name;
+      you.id = data.response[0].id;
+      you.avatar = data.response[0].photo_100;
 
-     socket.emit('add_user', {key: my_key, info: you});
+      socket.emit('add_user', {key: my_key, info: you});
       $('#vk-name').text(`${you.last_name} ${you.first_name}`);
-   });
+      
+      VK.api('storage.get', {key: "tutorial_complited"}, function(response){
+        if(response){
+          to_menu('menu');
+        } else if(response == "1"){
+          drawTutorialMap();
+          to_menu('tutorial');
+          tutorial(0);
+        } else {
+          alert('Ошибка при загрузке аккаунта!');
+        }
+      });
+    });
   },'5.80');
-  //socket.emit('add_user', {key: my_key, info: you});
-  //$('#vk-name').text(`${you.last_name} ${you.first_name}`);
+  // drawTutorialMap();
+
+  // socket.emit('add_user', {key: my_key, info: you});
+  // $('#vk-name').text(`${you.last_name} ${you.first_name}`);
 });
 var game = null;
 
@@ -62,12 +76,14 @@ function to_menu(menu){
   $('#game').css('opacity','0');
   $('#menu').css('opacity','0');
   $('#game-search').css('opacity','0');
+  $('#tutorial').css('opacity','0');
   $('.wy-tooltip').remove();
 
   setTimeout(function(){
     $('#game').css('display','none');
     $('#menu').css('display','none');
     $('#game-search').css('display','none');
+    $('#tutorial').css('display','none');
 
     $('#'+menu).css('display','flex');
   }, 500);

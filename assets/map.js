@@ -80,160 +80,317 @@ for(var i = 1; i <= 6; i++){
 }
 
 function map_click(tile){
-	if(GAME_MENUS.key_Q == true){
-		if(MAP[tile].movable == false && MAP[tile].tile != 0){
-			$('#for-'+tile).css('opacity','0');
-			MAP[tile].movable = true;
-			MAP[tile].tile = 0;
-			$('#'+tile).removeClass('map-blocked-item');
+	if(tutorial_mode == false){
+		if(GAME_MENUS.key_Q == true){
+			if(MAP[tile].movable == false && MAP[tile].tile != 0){
+				$('#for-'+tile).css('opacity','0');
+				MAP[tile].movable = true;
+				MAP[tile].tile = 0;
+				$('#'+tile).removeClass('map-blocked-item');
 
-			// var x, y;
-			// x = document.getElementById(tile).transform.animVal[0].matrix.e+13;
-			// y = document.getElementById(tile).transform.animVal[0].matrix.f+27;
+				// var x, y;
+				// x = document.getElementById(tile).transform.animVal[0].matrix.e+13;
+				// y = document.getElementById(tile).transform.animVal[0].matrix.f+27;
 
-			// document.getElementsByTagName('svg')[0].innerHTML = document.getElementsByTagName('svg')[0].innerHTML + `
-			// 	<text x="`+x+`" y="`+y+`" style="fill:rgb(186, 196, 164);font-weight:400;font-size:12px;" class="map-text">`+tile+`</text>`;
+				// document.getElementsByTagName('svg')[0].innerHTML = document.getElementsByTagName('svg')[0].innerHTML + `
+				// 	<text x="`+x+`" y="`+y+`" style="fill:rgb(186, 196, 164);font-weight:400;font-size:12px;" class="map-text">`+tile+`</text>`;
+				document.getElementById(tile).href.baseVal = 'assets/map/tile0.png';
+				
+				$('#'+tile).addClass('map-item');
+				hide_buttons();
+				GAME_MENUS.key_Q = false;
+				used_q = true;
+
+				for(var i in MAP){
+					$('#'+i).css('opacity','1');
+				}
+
+				show_buttons();
+				sync();
+			}
+		} else if(hero_chosed == true && hero_chose != null){
+			if($('#'+tile).css('opacity') == '1'){
+				var x, y;
+				x = document.getElementById(tile).transform.animVal[0].matrix.e+8;
+				y = document.getElementById(tile).transform.animVal[0].matrix.f+11.5;
+
+				document.getElementsByTagName('svg')[0].innerHTML = document.getElementsByTagName('svg')[0].innerHTML + '<image overflow="visible" id="hero-'+tile+'-'+hero_chose+'" width="100" height="100" xlink:href="assets/map/player1.png" style="pointer-events:none;" transform="matrix(0.24 0 0 0.24 '+x+' '+y+')">';
+
+				$('#hero-'+hero_chose).css('display','none');
+				MAP[tile].hero = true;
+				MAP[tile].movable = false;
+				MAP[tile].hero_by_player = my_key;
+				MAP[tile].heroType = hero_chose;
+				MAP[tile].hero_number = heroes-1;
+
+				  for(var i in MAP){
+				    if(MAP[i].movable == false){
+				      $('#'+i).css('opacity','1');
+				    }
+				  }
+
+				show_buttons();
+				hero_chosed = false;
+				hero_chose = null;
+				sync();
+			}
+		} else if(MAP[tile].hero == true && _hero_chosed_tile == false){
+			_hero_chosed = true;
+			_hero_chosed_tile = tile;
+
+			$('.heroes').css('left','-100px');
+			$('.heroes .info').css('left','0px');
+
+			$('.heroes').css('opacity','0');
+	      	$('.heroes').css('pointer-events','none');
+			$('.heroes .info').css('opacity','0');
+			GAME_MENUS.key_C = false;
+
+	  		document.getElementsByClassName('block')[0].style.bottom = '-60px';
+	  		drawMenu(HEROES[MAP[tile].heroType-1].type);
+			if(MAP[tile].hero_by_player == my_key) show_buttons();
+
+			$('.hero-stats').css('left','10px');
+			var stats = document.getElementsByClassName('stat');
+			for(var i in stats){
+				if(HEROES[MAP[tile].heroType-1].rare == false){
+					document.getElementById('stats-header').innerHTML = `<div>${HEROES[MAP[tile].heroType-1].name} 
+						<img id="stats-img" src="assets/img/${HEROES[MAP[tile].heroType-1].type}.svg" width="16" height="16"></div>
+						<div>1 уровень</div>
+						<div>Обычный</div>`;
+				} else {
+					document.getElementById('stats-header').innerHTML = `<div>${HEROES[MAP[tile].heroType-1].name} 
+						<img id="stats-img" src="assets/img/${HEROES[MAP[tile].heroType-1].type}.svg" width="16" height="16"></div>
+						<div>1 уровень</div>
+						<div class="rare">Редкий</div>`;
+				}
+				document.getElementsByClassName('stat-value')[i].innerHTML = HEROES[MAP[tile].heroType-1].params[i];
+			}
+
+			for(var i in MAP){
+				if(i != tile) $('#'+i).css('opacity','.2');
+			}
+
+			document.getElementById(tile).href.baseVal = 'assets/map/tile0_1.png';
+			$('#'+tile).css('z-index','1000');
+		} else if(MAP[tile].hero == true && _hero_chosed_tile == tile){
+			_hero_chosed = false;
+			_hero_chosed_tile = '';
+
+			if(heroes < 3 && _hero_chosed == false)
+	  			document.getElementsByClassName('block')[0].style.bottom = '10px';
+
+			document.getElementsByClassName('block')[1].style.bottom = '-60px';
+			document.getElementsByClassName('block')[2].style.bottom = '-60px';
+			document.getElementsByClassName('block')[3].style.bottom = '-60px';
+			document.getElementsByClassName('block')[4].style.bottom = '-60px';
+			document.getElementsByClassName('block')[5].style.bottom = '-60px';
+			document.getElementsByClassName('block')[6].style.bottom = '-60px';
+
+			document.getElementsByClassName('block')[8].style.bottom = '-60px';
+			document.getElementsByClassName('block')[9].style.bottom = '-60px';
+
+			document.getElementsByClassName('block')[10].style.bottom = '-60px';
+
+			$('.hero-stats').css('left','-300px');
 			document.getElementById(tile).href.baseVal = 'assets/map/tile0.png';
-			
-			$('#'+tile).addClass('map-item');
-			hide_buttons();
-			GAME_MENUS.key_Q = false;
-			used_q = true;
+			$('#'+tile).css('z-index','1');
 
 			for(var i in MAP){
 				$('#'+i).css('opacity','1');
 			}
+		} else if(_hero_move == true){
+			if(_hero_chosed_tile == tile) return;
 
-			show_buttons();
-			sync();
-		}
-	} else if(hero_chosed == true && hero_chose != null){
-		if($('#'+tile).css('opacity') == '1'){
-			var x, y;
-			x = document.getElementById(tile).transform.animVal[0].matrix.e+8;
-			y = document.getElementById(tile).transform.animVal[0].matrix.f+11.5;
+			if($('#'+tile).css('opacity') == '1'){
+				MAP[_hero_chosed_tile].hero = false;
+				MAP[_hero_chosed_tile].movable = true;
+				MAP[tile].hero_number = MAP[_hero_chosed_tile].hero_number;
+				MAP[tile].hero_by_player = MAP[_hero_chosed_tile].hero_by_player;
+				MAP[tile].heroType = MAP[_hero_chosed_tile].heroType;
+				document.getElementById(_hero_chosed_tile).href.baseVal = 'assets/map/tile0.png';
 
-			document.getElementsByTagName('svg')[0].innerHTML = document.getElementsByTagName('svg')[0].innerHTML + '<image overflow="visible" id="hero-'+tile+'-'+hero_chose+'" width="100" height="100" xlink:href="assets/map/player1.png" style="pointer-events:none;" transform="matrix(0.24 0 0 0.24 '+x+' '+y+')">';
+				MAP[tile].hero = true;
+				MAP[tile].movable = false;
+				MAP[_hero_chosed_tile].heroType = null;
+				MAP[_hero_chosed_tile].hero_by_player = null;
+				MAP[_hero_chosed_tile].hero_number = null;
+				document.getElementById(tile).href.baseVal = 'assets/map/tile0_1.png';
 
-			$('#hero-'+hero_chose).css('display','none');
-			MAP[tile].hero = true;
-			MAP[tile].movable = false;
-			MAP[tile].hero_by_player = my_key;
-			MAP[tile].heroType = hero_chose;
-			MAP[tile].hero_number = heroes-1;
+				_hero_move = false;
+				for(var i in MAP){
+					if(i != tile)
+						$('#'+i).css('opacity', '0.2');
+				}
+				GAME_MENUS.key_M = false; 			
 
-			  for(var i in MAP){
-			    if(MAP[i].movable == false){
-			      $('#'+i).css('opacity','1');
-			    }
-			  }
+				document.getElementById('hero-'+_hero_chosed_tile+'-'+MAP[tile].heroType).remove();
+				_hero_chosed_tile = tile;
 
-			show_buttons();
-			hero_chosed = false;
-			hero_chose = null;
-			sync();
-		}
-	} else if(MAP[tile].hero == true && _hero_chosed_tile == false){
-		_hero_chosed = true;
-		_hero_chosed_tile = tile;
+				var x, y;
+				x = document.getElementById(tile).transform.animVal[0].matrix.e+9;
+				y = document.getElementById(tile).transform.animVal[0].matrix.f+11.5;
 
-		$('.heroes').css('left','-100px');
-		$('.heroes .info').css('left','0px');
+				document.getElementsByTagName('svg')[0].innerHTML = document.getElementsByTagName('svg')[0].innerHTML + '<image overflow="visible" width="100" id="hero-'+tile+'-'+MAP[tile].heroType+'" height="100" xlink:href="assets/map/player1.png" style="pointer-events:none;" transform="matrix(0.24 0 0 0.24 '+x+' '+y+')">';
 
-		$('.heroes').css('opacity','0');
-      	$('.heroes').css('pointer-events','none');
-		$('.heroes .info').css('opacity','0');
-		GAME_MENUS.key_C = false;
-
-  		document.getElementsByClassName('block')[0].style.bottom = '-60px';
-  		drawMenu(HEROES[MAP[tile].heroType-1].type);
-		if(MAP[tile].hero_by_player == my_key) show_buttons();
-
-		$('.hero-stats').css('left','10px');
-		var stats = document.getElementsByClassName('stat');
-		for(var i in stats){
-			if(HEROES[MAP[tile].heroType-1].rare == false){
-				document.getElementById('stats-header').innerHTML = `<div>${HEROES[MAP[tile].heroType-1].name} 
-					<img id="stats-img" src="assets/img/${HEROES[MAP[tile].heroType-1].type}.svg" width="16" height="16"></div>
-					<div>1 уровень</div>
-					<div>Обычный</div>`;
-			} else {
-				document.getElementById('stats-header').innerHTML = `<div>${HEROES[MAP[tile].heroType-1].name} 
-					<img id="stats-img" src="assets/img/${HEROES[MAP[tile].heroType-1].type}.svg" width="16" height="16"></div>
-					<div>1 уровень</div>
-					<div class="rare">Редкий</div>`;
+				sync();
+				show_buttons();
 			}
-			document.getElementsByClassName('stat-value')[i].innerHTML = HEROES[MAP[tile].heroType-1].params[i];
 		}
+	} else {
+		if(TUTORIAL_MENUS.key_Q == true){
+			if(TUTORIAL_MAP[tile].movable == false && TUTORIAL_MAP[tile].tile != 0){
+				$('#for-'+tile).css('opacity','0');
+				TUTORIAL_MAP[tile].movable = true;
+				TUTORIAL_MAP[tile].tile = 0;
+				$('#tutorial-'+tile).removeClass('map-blocked-item');
 
-		for(var i in MAP){
-			if(i != tile) $('#'+i).css('opacity','.2');
-		}
+				// var x, y;
+				// x = document.getElementById(tile).transform.animVal[0].matrix.e+13;
+				// y = document.getElementById(tile).transform.animVal[0].matrix.f+27;
 
-		document.getElementById(tile).href.baseVal = 'assets/map/tile0_1.png';
-		$('#'+tile).css('z-index','1000');
-	} else if(MAP[tile].hero == true && _hero_chosed_tile == tile){
-		_hero_chosed = false;
-		_hero_chosed_tile = '';
+				// document.getElementsByTagName('svg')[0].innerHTML = document.getElementsByTagName('svg')[0].innerHTML + `
+				// 	<text x="`+x+`" y="`+y+`" style="fill:rgb(186, 196, 164);font-weight:400;font-size:12px;" class="map-text">`+tile+`</text>`;
+				document.getElementById("tutorial-"+tile).href.baseVal = 'assets/map/tile0.png';
+				
+				$('#tutorial-'+tile).addClass('map-item');
+				TUTORIAL_MENUS.key_Q = false;
+				document.getElementsByClassName('block-tutorial')[7].style.bottom = '-60px'; // Q
 
-		if(heroes < 3 && _hero_chosed == false)
-  			document.getElementsByClassName('block')[0].style.bottom = '10px';
+				for(var i in TUTORIAL_MAP){
+					$('#tutorial-'+i).css('opacity','1');
+				}
 
-		document.getElementsByClassName('block')[1].style.bottom = '-60px';
-		document.getElementsByClassName('block')[2].style.bottom = '-60px';
-		document.getElementsByClassName('block')[3].style.bottom = '-60px';
-		document.getElementsByClassName('block')[4].style.bottom = '-60px';
-		document.getElementsByClassName('block')[5].style.bottom = '-60px';
-		document.getElementsByClassName('block')[6].style.bottom = '-60px';
-
-		document.getElementsByClassName('block')[8].style.bottom = '-60px';
-		document.getElementsByClassName('block')[9].style.bottom = '-60px';
-
-		document.getElementsByClassName('block')[10].style.bottom = '-60px';
-
-		$('.hero-stats').css('left','-300px');
-		document.getElementById(tile).href.baseVal = 'assets/map/tile0.png';
-		$('#'+tile).css('z-index','1');
-
-		for(var i in MAP){
-			$('#'+i).css('opacity','1');
-		}
-	} else if(_hero_move == true){
-		if(_hero_chosed_tile == tile) return;
-
-		if($('#'+tile).css('opacity') == '1'){
-			MAP[_hero_chosed_tile].hero = false;
-			MAP[_hero_chosed_tile].movable = true;
-			MAP[tile].hero_number = MAP[_hero_chosed_tile].hero_number;
-			MAP[tile].hero_by_player = MAP[_hero_chosed_tile].hero_by_player;
-			MAP[tile].heroType = MAP[_hero_chosed_tile].heroType;
-			document.getElementById(_hero_chosed_tile).href.baseVal = 'assets/map/tile0.png';
-
-			MAP[tile].hero = true;
-			MAP[tile].movable = false;
-			MAP[_hero_chosed_tile].heroType = null;
-			MAP[_hero_chosed_tile].hero_by_player = null;
-			MAP[_hero_chosed_tile].hero_number = null;
-			document.getElementById(tile).href.baseVal = 'assets/map/tile0_1.png';
-
-			_hero_move = false;
-			for(var i in MAP){
-				if(i != tile)
-					$('#'+i).css('opacity', '0.2');
+				setTimeout(function(){
+					$('#judge').css('opacity','0');
+					$('#judge').css('display','block');
+					$('#judge').css('opacity','1');
+					setTimeout(function(){
+						tutorial(tutorial_step)
+					}, 500);
+				}, 2000);
 			}
-			GAME_MENUS.key_M = false; 			
+		} else if(hero_chosed == true && hero_chose != null){
+			if($('#tutorial-'+tile).css('opacity') == '1'){
+				var x, y;
+				x = document.getElementById('tutorial-'+tile).transform.animVal[0].matrix.e+8;
+				y = document.getElementById('tutorial-'+tile).transform.animVal[0].matrix.f+11.5;
 
-			document.getElementById('hero-'+_hero_chosed_tile+'-'+MAP[tile].heroType).remove();
+				document.getElementsByTagName('svg')[1].innerHTML = document.getElementsByTagName('svg')[1].innerHTML + '<image overflow="visible" id="hero-'+tile+'-'+hero_chose+'" width="100" height="100" xlink:href="assets/map/player1.png" style="pointer-events:none;" transform="matrix(0.24 0 0 0.24 '+x+' '+y+')">';
+
+				$('#hero-'+hero_chose).css('display','none');
+				TUTORIAL_MAP[tile].hero = true;
+				TUTORIAL_MAP[tile].movable = false;
+				TUTORIAL_MAP[tile].hero_by_player = 'tutorial';
+				TUTORIAL_MAP[tile].heroType = hero_chose;
+				TUTORIAL_MAP[tile].hero_number = heroes-1;
+
+				for(var i in TUTORIAL_MAP){
+					if(TUTORIAL_MAP[i].movable == false){
+						$('#tutorial-'+i).css('opacity','1');
+					}
+				}
+
+				$('#judge').css('opacity','0');
+				$('#judge').css('display','block');
+				$('#judge').css('opacity','1');
+				setTimeout(function(){
+					tutorial(tutorial_step);
+				}, 500);
+				hero_chosed = false;
+				hero_chose = null;
+			}
+		} else if(TUTORIAL_MAP[tile].hero == true && _hero_chosed_tile == false){
+			_hero_chosed = true;
 			_hero_chosed_tile = tile;
 
-			var x, y;
-			x = document.getElementById(tile).transform.animVal[0].matrix.e+9;
-			y = document.getElementById(tile).transform.animVal[0].matrix.f+11.5;
+			$('.heroes-tutorial').css('left','-100px');
+			$('.heroes-tutorial .info').css('left','0px');
 
-			document.getElementsByTagName('svg')[0].innerHTML = document.getElementsByTagName('svg')[0].innerHTML + '<image overflow="visible" width="100" id="hero-'+tile+'-'+MAP[tile].heroType+'" height="100" xlink:href="assets/map/player1.png" style="pointer-events:none;" transform="matrix(0.24 0 0 0.24 '+x+' '+y+')">';
+			$('.heroes-tutorial').css('opacity','0');
+	      	$('.heroes-tutorial').css('pointer-events','none');
+			$('.heroes-tutorial .info').css('opacity','0');
+			TUTORIAL_MENUS.key_C = false;
 
-			sync();
-			show_buttons();
+	  		document.getElementsByClassName('block-tutorial')[0].style.bottom = '-60px';
+	  		//drawTutorialMenu(HEROES[TUTORIAL_MAP[tile].heroType-1].type);
+			if(TUTORIAL_MAP[tile].hero_by_player == my_key) show_buttons();
+
+			$('.hero-stats-tutorial').css('left','10px');
+			var stats = document.getElementsByClassName('stat-tutorial');
+			for(var i in stats){
+				if(HEROES[TUTORIAL_MAP[tile].heroType-1].rare == false){
+					document.getElementById('stats-header-tutorial').innerHTML = `<div>${HEROES[TUTORIAL_MAP[tile].heroType-1].name} 
+						<img id="stats-img" src="assets/img/${HEROES[TUTORIAL_MAP[tile].heroType-1].type}.svg" width="16" height="16"></div>
+						<div>1 уровень</div>
+						<div>Обычный</div>`;
+				} else {
+					document.getElementById('stats-header-tutorial').innerHTML = `<div>${HEROES[TUTORIAL_MAP[tile].heroType-1].name} 
+						<img id="stats-img" src="assets/img/${HEROES[TUTORIAL_MAP[tile].heroType-1].type}.svg" width="16" height="16"></div>
+						<div>1 уровень</div>
+						<div class="rare">Редкий</div>`;
+				}
+				document.getElementsByClassName('stat-value-tutorial')[i].innerHTML = HEROES[TUTORIAL_MAP[tile].heroType-1].params[i];
+			}
+
+			for(var i in TUTORIAL_MAP){
+				if(i != tile) $('#tutorial-'+i).css('opacity','.2');
+			}
+
+			document.getElementById('tutorial-'+tile).href.baseVal = 'assets/map/tile0_1.png';
+			$('#tutorial-'+tile).css('z-index','1000');
+
+			setTimeout(function(){
+				$('#judge').css('opacity','0');
+				$('#judge').css('display','block');
+				$('#judge').css('opacity','1');
+				setTimeout(function(){
+					tutorial(tutorial_step);
+				}, 500);
+			}, 5000);
+		} else if(_hero_move == true){
+			if(_hero_chosed_tile == tile) return;
+
+			if($('#tutorial-'+tile).css('opacity') == '1'){
+				TUTORIAL_MAP[_hero_chosed_tile].hero = false;
+				TUTORIAL_MAP[_hero_chosed_tile].movable = true;
+				TUTORIAL_MAP[tile].hero_number = TUTORIAL_MAP[_hero_chosed_tile].hero_number;
+				TUTORIAL_MAP[tile].hero_by_player = TUTORIAL_MAP[_hero_chosed_tile].hero_by_player;
+				TUTORIAL_MAP[tile].heroType = TUTORIAL_MAP[_hero_chosed_tile].heroType;
+				document.getElementById('tutorial-'+_hero_chosed_tile).href.baseVal = 'assets/map/tile0.png';
+
+				TUTORIAL_MAP[tile].hero = true;
+				TUTORIAL_MAP[tile].movable = false;
+				TUTORIAL_MAP[_hero_chosed_tile].heroType = null;
+				TUTORIAL_MAP[_hero_chosed_tile].hero_by_player = null;
+				TUTORIAL_MAP[_hero_chosed_tile].hero_number = null;
+				document.getElementById('tutorial-'+tile).href.baseVal = 'assets/map/tile0_1.png';
+
+				_hero_move = false;
+				for(var i in TUTORIAL_MAP){
+					if(i != tile)
+						$('#tutorial-'+i).css('opacity', '0.2');
+				}
+				TUTORIAL_MENUS.key_M = false; 			
+
+				document.getElementById('hero-'+_hero_chosed_tile+'-'+TUTORIAL_MAP[tile].heroType).remove();
+				_hero_chosed_tile = tile;
+
+				var x, y;
+				x = document.getElementById('tutorial-'+tile).transform.animVal[0].matrix.e+9;
+				y = document.getElementById('tutorial-'+tile).transform.animVal[0].matrix.f+11.5;
+				document.getElementsByTagName('svg')[1].innerHTML = document.getElementsByTagName('svg')[1].innerHTML + '<image overflow="visible" width="100" id="hero-'+tile+'-'+TUTORIAL_MAP[tile].heroType+'" height="100" xlink:href="assets/map/player1.png" style="pointer-events:none;" transform="matrix(0.24 0 0 0.24 '+x+' '+y+')">';
+
+				document.getElementsByClassName('block-tutorial')[10].style.bottom = '-60px'; // M
+				setTimeout(function(){
+					$('#judge').css('opacity','0');
+					$('#judge').css('display','block');
+					$('#judge').css('opacity','1');
+					setTimeout(function(){
+						tutorial(tutorial_step);
+					}, 500);
+				}, 5000);
+			}
 		}
 	}
 }

@@ -35,21 +35,37 @@ var enemy_key = 321;
 
 var deletedHeroTile = null;
 
+var tutorial_mode = true;
+
+var tutorial_complited = null;
+
 $(document).ready(function(){
   $('[data-toggle="tooltip"]').tooltip();   
 });
 
-document.getElementsByClassName('block')[1].style.bottom = '-60px';
-document.getElementsByClassName('block')[2].style.bottom = '-60px';
-document.getElementsByClassName('block')[3].style.bottom = '-60px';
-document.getElementsByClassName('block')[4].style.bottom = '-60px';
-document.getElementsByClassName('block')[5].style.bottom = '-60px';
-document.getElementsByClassName('block')[6].style.bottom = '-60px';
+document.getElementsByClassName('block')[0].style.bottom = '10px'; // C
+document.getElementsByClassName('block')[1].style.bottom = '-60px'; // 1
+document.getElementsByClassName('block')[2].style.bottom = '-60px'; // 2
+document.getElementsByClassName('block')[3].style.bottom = '-60px'; // 3
+document.getElementsByClassName('block')[4].style.bottom = '-60px'; // 4
+document.getElementsByClassName('block')[5].style.bottom = '-60px'; // 5
+document.getElementsByClassName('block')[6].style.bottom = '-60px'; // 6
+document.getElementsByClassName('block')[7].style.bottom = '10px'; // Q
+document.getElementsByClassName('block')[8].style.bottom = '-60px'; // W
+document.getElementsByClassName('block')[9].style.bottom = '-60px'; // E
+document.getElementsByClassName('block')[10].style.bottom = '-60px'; // M
 
-document.getElementsByClassName('block')[8].style.bottom = '-60px';
-document.getElementsByClassName('block')[9].style.bottom = '-60px';
-
-document.getElementsByClassName('block')[10].style.bottom = '-60px';
+document.getElementsByClassName('block-tutorial')[0].style.bottom = '-60px'; // C
+document.getElementsByClassName('block-tutorial')[1].style.bottom = '-60px'; // 1
+document.getElementsByClassName('block-tutorial')[2].style.bottom = '-60px'; // 2
+document.getElementsByClassName('block-tutorial')[3].style.bottom = '-60px'; // 3
+document.getElementsByClassName('block-tutorial')[4].style.bottom = '-60px'; // 4
+document.getElementsByClassName('block-tutorial')[5].style.bottom = '-60px'; // 5
+document.getElementsByClassName('block-tutorial')[6].style.bottom = '-60px'; // 6
+document.getElementsByClassName('block-tutorial')[7].style.bottom = '-60px'; // Q
+document.getElementsByClassName('block-tutorial')[8].style.bottom = '-60px'; // W
+document.getElementsByClassName('block-tutorial')[9].style.bottom = '-60px'; // E
+document.getElementsByClassName('block-tutorial')[10].style.bottom = '-60px'; // M
 
 function setTimer(el, t){
 	var time = t*1000;
