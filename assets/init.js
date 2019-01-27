@@ -53,9 +53,9 @@ socket.on('connect', function(data){
       $('#vk-name').text(`${you.last_name} ${you.first_name}`);
       
       VK.api('storage.get', {key: "tutorial_complited"}, function(response){
-        if(response){
+        if(response == "1"){
           to_menu('menu');
-        } else if(response == "1"){
+        } else if(response){
           drawTutorialMap();
           to_menu('tutorial');
           tutorial(0);
