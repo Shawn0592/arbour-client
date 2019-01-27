@@ -489,47 +489,47 @@ $(document).keypress(function(event){
   if($('game').css('display') != 'none'){
     var key = String.fromCharCode(event.which);
     if(key == 'C' || key == 'c' || key == 'с' || key == 'С'){
-      if($('#button-C').css('bottom') != '10px') return;
+      if(tutorial_mode == false && $('#button-C').css('bottom') != '10px') return;
       if(tutorial_mode == true && $('#button-tutorial-C').css('bottom') != '10px') return;
       button('C');
     } else if(key == '1'){
-      if($('#button-1').css('bottom') != '10px') return;
+      if(tutorial_mode == false && $('#button-1').css('bottom') != '10px') return;
       if(tutorial_mode == true && $('#button-tutorial-1').css('bottom') != '10px') return;
       button('1');
     } else if(key == '2'){
-      if($('#button-2').css('bottom') != '10px') return;
+      if(tutorial_mode == false && $('#button-2').css('bottom') != '10px') return;
       if(tutorial_mode == true && $('#button-tutorial-2').css('bottom') != '10px') return;
       button('2');
     } else if(key == '3'){
-      if($('#button-3').css('bottom') != '10px') return;
+      if(tutorial_mode == false && $('#button-3').css('bottom') != '10px') return;
       if(tutorial_mode == true && $('#button-tutorial-3').css('bottom') != '10px') return;
       button('3');
     } else if(key == '4'){
-      if($('#button-4').css('bottom') != '10px') return;
+      if(tutorial_mode == false && $('#button-4').css('bottom') != '10px') return;
       if(tutorial_mode == true && $('#button-tutorial-4').css('bottom') != '10px') return;
       button('4');
     } else if(key == '5'){
-      if($('#button-5').css('bottom') != '10px') return;
+      if(tutorial_mode == false && $('#button-5').css('bottom') != '10px') return;
       if(tutorial_mode == true && $('#button-tutorial-5').css('bottom') != '10px') return;
       button('5');
     } else if(key == '6'){
-      if($('#button-6').css('bottom') != '10px') return;
+      if(tutorial_mode == false && $('#button-6').css('bottom') != '10px') return;
       if(tutorial_mode == true && $('#button-tutorial-6').css('bottom') != '10px') return;
       button('6');
     } else if(key == 'Q' || key == 'q' || key == 'й' || key == 'Й'){
-      if($('#button-Q').css('bottom') != '10px') return;
+      if(tutorial_mode == false && $('#button-Q').css('bottom') != '10px') return;
       if(tutorial_mode == true && $('#button-tutorial-Q').css('bottom') != '10px') return;
       button('Q');
     } else if(key == 'W' || key == 'w' || key == 'ц' || key == 'Ц'){
-      if($('#button-W').css('bottom') != '10px') return;
+      if(tutorial_mode == false && $('#button-W').css('bottom') != '10px') return;
       if(tutorial_mode == true && $('#button-tutorial-W').css('bottom') != '10px') return;
       button('W');
     } else if(key == 'E' || key == 'e' || key == 'у' || key == 'У'){
-      if($('#button-E').css('bottom') != '10px') return;
+      if(tutorial_mode == false && $('#button-E').css('bottom') != '10px') return;
       if(tutorial_mode == true && $('#button-tutorial-E').css('bottom') != '10px') return;
       button('E');
     } else if(key == 'M' || key == 'm' || key == 'ь' || key == 'Ь'){
-      if($('#button-M').css('bottom') != '10px') return;
+      if(tutorial_mode == false && $('#button-M').css('bottom') != '10px') return;
       if(tutorial_mode == true && $('#button-tutorial-M').css('bottom') != '10px') return;
       button('M');
     }

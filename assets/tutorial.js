@@ -224,8 +224,12 @@ function tutorial_action(i){
 						document.getElementsByClassName('block-tutorial')[9].style.bottom = '-60px'; // E
 						document.getElementsByClassName('block-tutorial')[10].style.bottom = '-60px'; // M
 
-						VK.api('storage.set', {key: "tutorial_complited1", value: "1"}, function(response){
-							to_menu('menu');
+						VK.api('storage.set', {key: "tutorial_complited1", value: "1"}, function(response1){
+							VK.api('storage.get', {key: "all_users", global: true}, function(response2){
+								VK.api('storage.set', {key: "all_users", global: true, value: (response2.response+1)*1}, function(response3){
+									to_menu('menu');
+								});
+							});
 						});
 					}
 				}, 500);
