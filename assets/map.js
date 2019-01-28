@@ -81,6 +81,8 @@ for(var i = 1; i <= 6; i++){
 
 function map_click(tile){
 	if(tutorial_mode == false){
+		if($('#judge-game').css('display') != 'none') return;
+
 		if(GAME_MENUS.key_Q == true){
 			if(MAP[tile].movable == false && MAP[tile].tile != 0){
 				$('#for-'+tile).css('opacity','0');
@@ -133,6 +135,129 @@ function map_click(tile){
 				hero_chosed = false;
 				hero_chose = null;
 				sync();
+
+			    if(heroes == 1){
+			        $('#judge-game').css('opacity','0');
+			        $('#judge-game').css('display','block');
+			        $('#judge-game').css('opacity','1');
+			        setTimeout(function(){
+			          $("#judge-text-game").typed({
+			            strings: [`Отличный выбор!^1500 Теперь размести своего второго героя на игровое поле.`],
+			            stringsElement: null,
+			            typeSpeed: 40,
+			            startDelay: 1200,
+			            backSpeed: 20,
+			            backDelay: 500,
+			            loop: false,
+			            loopCount: 0,
+			            showCursor: false,
+			            cursorChar: "|",
+			            attr: null,
+			            contentType: 'html',
+			            onStringTyped: function() {
+			              setTimeout(function(){
+			                tutorial_step = i+1;
+			                $('#judge-game').css('opacity','0');
+			                setTimeout(function(){
+			                  $('#judge-game').css('display','none');
+			                  $('#judge-text-game').typed('reset'); $('#judge-text-game').text('...');
+			                }, 500);
+			              }, 5000);
+			            }
+			          });
+			        }, 500);
+			    } else if(heroes == 2){
+			        $('#judge-game').css('opacity','0');
+			        $('#judge-game').css('display','block');
+			        $('#judge-game').css('opacity','1');
+			        setTimeout(function(){
+			          $("#judge-text-game").typed({
+			            strings: [`Я думаю,^1000 с такой командой ты точно победишь!^1500 Теперь размести своего третьего героя на игровое поле.`],
+			            stringsElement: null,
+			            typeSpeed: 40,
+			            startDelay: 1200,
+			            backSpeed: 20,
+			            backDelay: 500,
+			            loop: false,
+			            loopCount: 0,
+			            showCursor: false,
+			            cursorChar: "|",
+			            attr: null,
+			            contentType: 'html',
+			            onStringTyped: function() {
+			              setTimeout(function(){
+			                $('#judge-game').css('opacity','0');
+			                setTimeout(function(){
+			                  $('#judge-game').css('display','none');
+			                  $('#judge-text-game').typed('reset'); $('#judge-text-game').text('...');
+			                }, 500);
+			              }, 5000);
+			            }
+			          });
+			        }, 500);
+			    } else if(heroes == 3){
+			        $('#judge-game').css('opacity','0');
+			        $('#judge-game').css('display','block');
+			        $('#judge-game').css('opacity','1');
+			        setTimeout(function(){
+			          $("#judge-text-game").typed({
+			            strings: [`Все герои размещены на карте.^1500 Теперь я даю тебе возможность управлять своими героями.^1500 Удачи!`],
+			            stringsElement: null,
+			            typeSpeed: 40,
+			            startDelay: 1200,
+			            backSpeed: 20,
+			            backDelay: 500,
+			            loop: false,
+			            loopCount: 0,
+			            showCursor: false,
+			            cursorChar: "|",
+			            attr: null,
+			            contentType: 'html',
+			            onStringTyped: function() {
+			              setTimeout(function(){
+			                $('#judge-game').css('opacity','0');
+			                setTimeout(function(){
+			                  $('#judge-game').css('display','none');
+			                  $('#judge-text-game').typed('reset'); $('#judge-text-game').text('...');
+			                }, 500);
+			              }, 5000);
+			            }
+			          });
+			        }, 500);
+
+				    if(enemy_heroes.length != 3){
+				        $('#judge-game').css('opacity','0');
+				        $('#judge-game').css('display','block');
+				        $('#judge-game').css('opacity','1');
+						
+						$("#judge-text-game").typed({
+							strings: [`Ожидаем второго игрока..`],
+							stringsElement: null,
+							typeSpeed: 40,
+							startDelay: 1200,
+							backSpeed: 20,
+							backDelay: 500,
+							loop: false,
+							loopCount: 0,
+							showCursor: false,
+							cursorChar: "|",
+							attr: null,
+							contentType: 'html',
+							onStringTyped: function() {}
+						});
+
+						var checker = setInterval(function(){
+							if(enemy_heroes.length == 3){
+								clearInterval(checker);
+								$('#judge-game').css('opacity','0');
+								setTimeout(function(){
+									$('#judge-game').css('display','none');
+									$('#judge-text-game').typed('reset'); $('#judge-text-game').text('...');
+								}, 500);
+							}
+						}, 2000);
+					}
+			    }
 			}
 		} else if(MAP[tile].hero == true && _hero_chosed_tile == false){
 			_hero_chosed = true;

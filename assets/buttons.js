@@ -67,6 +67,7 @@ var TUTORIAL_MENUS = {
 function button(key){
   $('.wy-tooltip').remove();
   if(tutorial_mode == false){
+    if($('#judge-game').css('display') != 'none') return;
     if(key == 'C' && heroes < 3){
       if(GAME_MENUS.key_C == false){
         $('.heroes').css('left','-3px');
@@ -453,12 +454,6 @@ function _hero_chose(hero){
     hero_chose = hero;
     hero_chosed = true;
 
-    you_health_all = you_health_all + HEROES[hero_chose*1-1].params[4]*10;
-    you_health = you_health + HEROES[hero_chose*1-1].params[4]*10;
-
-    you_mana_all = you_mana_all + HEROES[hero_chose*1-1].params[3]*10;
-    you_mana = you_mana + HEROES[hero_chose*1-1].params[3]*10;
-
     updatePlayersParams();
   } else {
     for(var i in TUTORIAL_MAP){
@@ -490,46 +485,57 @@ $(document).keypress(function(event){
     var key = String.fromCharCode(event.which);
     if(key == 'C' || key == 'c' || key == 'с' || key == 'С'){
       if(tutorial_mode == false && $('#button-C').css('bottom') != '10px') return;
+      if(tutorial_mode == false && $('#judge-game').css('display') != 'none') return;
       if(tutorial_mode == true && $('#button-tutorial-C').css('bottom') != '10px') return;
       button('C');
     } else if(key == '1'){
       if(tutorial_mode == false && $('#button-1').css('bottom') != '10px') return;
+      if(tutorial_mode == false && $('#judge-game').css('display') != 'none') return;
       if(tutorial_mode == true && $('#button-tutorial-1').css('bottom') != '10px') return;
       button('1');
     } else if(key == '2'){
       if(tutorial_mode == false && $('#button-2').css('bottom') != '10px') return;
+      if(tutorial_mode == false && $('#judge-game').css('display') != 'none') return;
       if(tutorial_mode == true && $('#button-tutorial-2').css('bottom') != '10px') return;
       button('2');
     } else if(key == '3'){
       if(tutorial_mode == false && $('#button-3').css('bottom') != '10px') return;
+      if(tutorial_mode == false && $('#judge-game').css('display') != 'none') return;
       if(tutorial_mode == true && $('#button-tutorial-3').css('bottom') != '10px') return;
       button('3');
     } else if(key == '4'){
       if(tutorial_mode == false && $('#button-4').css('bottom') != '10px') return;
+      if(tutorial_mode == false && $('#judge-game').css('display') != 'none') return;
       if(tutorial_mode == true && $('#button-tutorial-4').css('bottom') != '10px') return;
       button('4');
     } else if(key == '5'){
       if(tutorial_mode == false && $('#button-5').css('bottom') != '10px') return;
+      if(tutorial_mode == false && $('#judge-game').css('display') != 'none') return;
       if(tutorial_mode == true && $('#button-tutorial-5').css('bottom') != '10px') return;
       button('5');
     } else if(key == '6'){
       if(tutorial_mode == false && $('#button-6').css('bottom') != '10px') return;
+      if(tutorial_mode == false && $('#judge-game').css('display') != 'none') return;
       if(tutorial_mode == true && $('#button-tutorial-6').css('bottom') != '10px') return;
       button('6');
     } else if(key == 'Q' || key == 'q' || key == 'й' || key == 'Й'){
       if(tutorial_mode == false && $('#button-Q').css('bottom') != '10px') return;
+      if(tutorial_mode == false && $('#judge-game').css('display') != 'none') return;
       if(tutorial_mode == true && $('#button-tutorial-Q').css('bottom') != '10px') return;
       button('Q');
     } else if(key == 'W' || key == 'w' || key == 'ц' || key == 'Ц'){
       if(tutorial_mode == false && $('#button-W').css('bottom') != '10px') return;
+      if(tutorial_mode == false && $('#judge-game').css('display') != 'none') return;
       if(tutorial_mode == true && $('#button-tutorial-W').css('bottom') != '10px') return;
       button('W');
     } else if(key == 'E' || key == 'e' || key == 'у' || key == 'У'){
       if(tutorial_mode == false && $('#button-E').css('bottom') != '10px') return;
+      if(tutorial_mode == false && $('#judge-game').css('display') != 'none') return;
       if(tutorial_mode == true && $('#button-tutorial-E').css('bottom') != '10px') return;
       button('E');
     } else if(key == 'M' || key == 'm' || key == 'ь' || key == 'Ь'){
       if(tutorial_mode == false && $('#button-M').css('bottom') != '10px') return;
+      if(tutorial_mode == false && $('#judge-game').css('display') != 'none') return;
       if(tutorial_mode == true && $('#button-tutorial-M').css('bottom') != '10px') return;
       button('M');
     }

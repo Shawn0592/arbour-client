@@ -69,8 +69,9 @@ socket.on('connect', function(data){
       });
     });
   },'5.80');
-  // drawTutorialMap();
+  drawTutorialMap();
 
+  // to_menu('menu');
   // socket.emit('add_user', {key: my_key, info: you});
   // $('#vk-name').text(`${you.last_name} ${you.first_name}`);
 });
@@ -111,6 +112,12 @@ function to_menu(menu){
         socket.emit('games_find', {key: my_key, info: you});
       }, 1000);
     } else { stopFindGameIntervals(); }
+
+    if(menu == 'menu'){
+      VK.api('storage.get', {key: "all_users", global: true}, function(res){
+        $('#all-users').text(`${res.response}`);
+      });
+    }
   }, 1000);
 }
 

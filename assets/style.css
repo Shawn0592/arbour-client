@@ -546,6 +546,7 @@ hr {
 	background-color: rgba(235, 219, 183, .85);
 	justify-content: center;
 	pointer-events: none;
+	z-index: 1000;
 }
 
 .judge-content {

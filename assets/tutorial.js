@@ -232,6 +232,8 @@ function tutorial_action(i){
 							});
 						});
 					}
+
+					$('#judge-text').typed('reset'); $('#judge-text').text('...');
 				}, 500);
 			}, 5000);
 		}

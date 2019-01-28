@@ -20,6 +20,34 @@ socket.on('create_game', data => { if(data.game.creator_key == my_key || data.ga
 	$('#enemy-img').attr('src', enemy.avatar);
 
 	to_menu('game');
+
+	setTimeout(function(){
+		$('#judge-text-game').typed('reset'); $('#judge-text-game').text('...');
+
+		$("#judge-text-game").typed({
+			strings: [`Добро пожаловать на арену Arbour!^1500 Сейчас тебе предстоит бой с игроком ${enemy.name}!^1500 По правилам арены,^1000 в начале игроки должны разместить трёх героев на игровое поле.^1500 Размести своего первого героя.`],
+			stringsElement: null,
+			typeSpeed: 40,
+			startDelay: 1200,
+			backSpeed: 20,
+			backDelay: 500,
+			loop: false,
+			loopCount: 0,
+			showCursor: false,
+			cursorChar: "|",
+			attr: null,
+			contentType: 'html',
+			onStringTyped: function() {
+				setTimeout(function(){
+					$('#judge-game').css('opacity','0');
+					setTimeout(function(){
+						$('#judge-game').css('display','none');
+						$('#judge-text-game').typed('reset'); $('#judge-text-game').text('...');
+					}, 500);
+				}, 5000);
+			}
+		});
+	}, 1000);
 }});
 
 function sync(){
