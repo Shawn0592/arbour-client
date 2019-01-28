@@ -271,7 +271,7 @@ function map_click(tile){
 				}, 2000);
 			}
 		} else if(hero_chosed == true && hero_chose != null){
-			if($('#tutorial-'+tile).css('opacity') == '1'){
+			if($('#tutorial-'+tile).css('opacity') == '1' && MAP[tile].movable == true){
 				var x, y;
 				x = document.getElementById('tutorial-'+tile).transform.animVal[0].matrix.e+8;
 				y = document.getElementById('tutorial-'+tile).transform.animVal[0].matrix.f+11.5;

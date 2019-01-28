@@ -398,7 +398,7 @@ hr {
 	border-top: 1px solid #DFDDD0;
 }
 
-.hero-stats .stats .stat, #menu .left .stat, .hero-stats-tutorial .stats .stat-tutorial {
+.hero-stats .stats .stat, #menu .left .stat, .hero-stats-tutorial .stats .stat-tutorial, .statm {
 	clear: both;
 	height: 25px;
 	font-size: 14px;
@@ -408,15 +408,15 @@ hr {
 	border-radius: 3px;
 }
 
-.hero-stats .stats .stat:nth-of-type(odd), #menu .left .stat:nth-of-type(odd), .hero-stats-tutorial .stats .stat-tutorial:nth-of-type(odd){
+.hero-stats .stats .stat:nth-of-type(odd), #menu .left .stat:nth-of-type(odd), .hero-stats-tutorial .stats .stat-tutorial:nth-of-type(odd), .statm:nth-of-type(odd){
 	background-color: #E8E6D9;
 }
 
-.hero-stats .stats .stat div:nth-of-type(1), #menu .left .stat div:nth-of-type(1), .hero-stats-tutorial .stats .stat-tutorial div:nth-of-type(1){
+.hero-stats .stats .stat div:nth-of-type(1), #menu .left .stat div:nth-of-type(1), .hero-stats-tutorial .stats .stat-tutorial div:nth-of-type(1), .statm div:nth-of-type(1){
 	float:left;
 }
 
-.hero-stats .stats .stat div:nth-of-type(2), #menu .left .stat div:nth-of-type(2), .hero-stats-tutorial .stats .stat-tutorial div:nth-of-type(2){
+.hero-stats .stats .stat div:nth-of-type(2), #menu .left .stat div:nth-of-type(2), .hero-stats-tutorial .stats .stat-tutorial div:nth-of-type(2), .statm div:nth-of-type(2){
 	float:right;
 }
 
