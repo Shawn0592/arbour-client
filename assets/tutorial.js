@@ -226,7 +226,7 @@ function tutorial_action(i){
 
 						VK.api('storage.set', {key: "tutorial_complited1", value: "1"}, function(response1){
 							VK.api('storage.get', {key: "all_users", global: true}, function(response2){
-								VK.api('storage.set', {key: "all_users", global: true, value: (response2.response+1)*1}, function(response3){
+								VK.api('storage.set', {key: "all_users", global: true, value: (response2.response)*1+1}, function(response3){
 									to_menu('menu');
 								});
 							});

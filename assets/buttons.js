@@ -154,7 +154,7 @@ function button(key){
            if(MAP[i].hero && MAP[i].hero_by_player == enemy_key){
             var damageValue = Math.round(MAGIC[HEROES[MAP[_hero_chosed_tile].heroType-1].type][0].damage-HEROES[MAP[_hero_chosed_tile].heroType-1].params[0]+HEROES[MAP[_hero_chosed_tile].heroType-1].params[5]);
 
-            if(enemy_heroes[MAP[i].hero_number].health - damageValue <= 0){
+            if(enemy_heroes[MAP[i].hero_number] && enemy_heroes[MAP[i].hero_number].health - damageValue <= 0){
               delete enemy_heroes[MAP[i].hero_number];
               MAP[i].movable = true;
               MAP[i].hero = false;
@@ -183,10 +183,10 @@ function button(key){
       if($('#button-2').attr('class') == "block tooltip"){
         if(you_heroes[MAP[_hero_chosed_tile].hero_number].mana+MAGIC[HEROES[MAP[_hero_chosed_tile].heroType-1].type][1].add_magic >= you_mana_all && you_heroes[MAP[_hero_chosed_tile].hero_number].health+MAGIC[HEROES[MAP[_hero_chosed_tile].heroType-1].type][1].add_heal >= you_health_all) return;
 
-        if(you_heroes[MAP[_hero_chosed_tile].hero_number].mana+MAGIC[HEROES[MAP[_hero_chosed_tile].heroType-1].type][1].add_magic < you_mana_all){
+        if(you_heroes[MAP[_hero_chosed_tile].hero_number].mana+MAGIC[HEROES[MAP[_hero_chosed_tile].heroType-1].type][1].add_magic <= you_mana_all){
           you_heroes[MAP[_hero_chosed_tile].hero_number].mana = you_heroes[MAP[_hero_chosed_tile].hero_number].mana + MAGIC[HEROES[MAP[_hero_chosed_tile].heroType-1].type][1].add_magic;
         }
-        if(you_heroes[MAP[_hero_chosed_tile].hero_number].health+MAGIC[HEROES[MAP[_hero_chosed_tile].heroType-1].type][1].add_heal < you_health_all){
+        if(you_heroes[MAP[_hero_chosed_tile].hero_number].health+MAGIC[HEROES[MAP[_hero_chosed_tile].heroType-1].type][1].add_heal <= you_health_all){
           you_heroes[MAP[_hero_chosed_tile].hero_number].health = you_heroes[MAP[_hero_chosed_tile].hero_number].health + MAGIC[HEROES[MAP[_hero_chosed_tile].heroType-1].type][1].add_heal;
         }
 
@@ -206,7 +206,7 @@ function button(key){
 
             var damageValue = Math.round(MAGIC[HEROES[MAP[_hero_chosed_tile].heroType-1].type][2].magic_damage-HEROES[MAP[_hero_chosed_tile].heroType-1].params[1]+HEROES[MAP[_hero_chosed_tile].heroType-1].params[7]);
 
-            if(enemy_heroes[MAP[i].hero_number].health - damageValue <= 0){
+            if(enemy_heroes[MAP[i].hero_number] && enemy_heroes[MAP[i].hero_number].health - damageValue <= 0){
               delete enemy_heroes[MAP[i].hero_number];
               MAP[i].movable = true;
               MAP[i].hero = false;
@@ -238,7 +238,7 @@ function button(key){
            if(MAP[i].hero && MAP[i].hero_by_player == enemy_key){
             var damageValue = Math.round(MAGIC[HEROES[MAP[_hero_chosed_tile].heroType-1].type][3].damage-HEROES[MAP[_hero_chosed_tile].heroType-1].params[0]+HEROES[MAP[_hero_chosed_tile].heroType-1].params[5]);
 
-            if(enemy_heroes[MAP[i].hero_number].health - damageValue <= 0){
+            if(enemy_heroes[MAP[i].hero_number] && enemy_heroes[MAP[i].hero_number].health - damageValue <= 0){
               delete enemy_heroes[MAP[i].hero_number];
               MAP[i].movable = true;
               MAP[i].hero = false;
@@ -273,7 +273,7 @@ function button(key){
 
             var damageValue = Math.round(MAGIC[HEROES[MAP[_hero_chosed_tile].heroType-1].type][4].magic_damage-HEROES[MAP[_hero_chosed_tile].heroType-1].params[1]+HEROES[MAP[_hero_chosed_tile].heroType-1].params[7]);
 
-            if(enemy_heroes[MAP[i].hero_number].health - damageValue <= 0){
+            if(enemy_heroes[MAP[i].hero_number] && enemy_heroes[MAP[i].hero_number].health - damageValue <= 0){
               delete enemy_heroes[MAP[i].hero_number];
               MAP[i].movable = true;
               MAP[i].hero = false;
@@ -305,7 +305,7 @@ function button(key){
            if(MAP[i].hero && MAP[i].hero_by_player == enemy_key){
             var damageValue = Math.round(MAGIC[HEROES[MAP[_hero_chosed_tile].heroType-1].type][5].damage-HEROES[MAP[_hero_chosed_tile].heroType-1].params[0]+HEROES[MAP[_hero_chosed_tile].heroType-1].params[5]);
 
-            if(enemy_heroes[MAP[i].hero_number].health - damageValue <= 0){
+            if(enemy_heroes[MAP[i].hero_number] && enemy_heroes[MAP[i].hero_number].health - damageValue <= 0){
               delete enemy_heroes[MAP[i].hero_number];
               MAP[i].movable = true;
               MAP[i].hero = false;

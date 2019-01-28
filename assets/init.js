@@ -95,6 +95,17 @@ function to_menu(menu){
   setTimeout(function(){
     $('#'+menu).css('opacity','1');
     if(menu == 'game-search'){
+      document.getElementsByClassName('block')[0].style.bottom = '10px'; // C
+      document.getElementsByClassName('block')[1].style.bottom = '-60px'; // 1
+      document.getElementsByClassName('block')[2].style.bottom = '-60px'; // 2
+      document.getElementsByClassName('block')[3].style.bottom = '-60px'; // 3
+      document.getElementsByClassName('block')[4].style.bottom = '-60px'; // 4
+      document.getElementsByClassName('block')[5].style.bottom = '-60px'; // 5
+      document.getElementsByClassName('block')[6].style.bottom = '-60px'; // 6
+      document.getElementsByClassName('block')[7].style.bottom = '10px'; // Q
+      document.getElementsByClassName('block')[8].style.bottom = '-60px'; // W
+      document.getElementsByClassName('block')[9].style.bottom = '-60px'; // E
+      document.getElementsByClassName('block')[10].style.bottom = '-60px'; // M
       restartFindGameIntervals();
       setTimeout(function(){
         socket.emit('games_find', {key: my_key, info: you});

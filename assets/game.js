@@ -6,7 +6,6 @@ var _hero_chosed = false;
 var _hero_chosed_tile = '';
 var _hero_move = false;
 var _hero_type = null;
-
 var heroes = 0;
 var you_heroes = [];
 var enemy_heroes = [];
@@ -17,14 +16,12 @@ var magic_3 = 0;
 var magic_4 = 0;
 var magic_5 = 0;
 var magic_6 = 0;
-
 var enemy = {};
 
 var you_health = 0;
 var you_health_all = 0;
 var you_mana = 0;
 var you_mana_all = 0;
-
 var enemy_health = 0;
 var enemy_health_all = 0;
 var enemy_mana = 0;
@@ -32,7 +29,6 @@ var enemy_mana_all = 0;
 
 var you_key = 123;
 var enemy_key = 321;
-
 var deletedHeroTile = null;
 var tutorial_mode = false;
 
