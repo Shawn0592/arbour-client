@@ -472,7 +472,7 @@ function map_click(tile){
 				setTimeout(function(){
 					tutorial(tutorial_step);
 				}, 500);
-			}, 5000);
+			}, 3000);
 		} else if(_hero_move == true){
 			if(_hero_chosed_tile == tile) return;
 

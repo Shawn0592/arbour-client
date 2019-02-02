@@ -1,5 +1,5 @@
 let socket = io.connect('https://exorum-server.herokuapp.com/',{'forceNew':false});
-//let socket = io.connect();
+//let socket = io.connect('http://localhost:8080',{'forceNew':false});
 
 function randomInteger(min, max) {
     let rand = min + Math.random() * (max + 1 - min);
@@ -52,8 +52,10 @@ socket.on('connect', function(data){
       socket.emit('add_user', {key: my_key, info: you});
       $('#vk-name').text(`${you.last_name} ${you.first_name}`);
 
-      VK.api('storage.get', {key: "all_users", global: true}, function(res){
-        $('#all-users').text(`${res.response}`);
+      socket.emit('sync_stats');
+
+      VK.api('storage.get', {key: "online_users", global: true}, function(response1){
+        VK.api('storage.set', {key: "online_users", global: true, value: (response1.response)*1+1}, function(response2){});
       });
 
       VK.api('storage.get', {key: "tutorial_complited1"}, function(res){
@@ -69,7 +71,6 @@ socket.on('connect', function(data){
       });
     });
   },'5.80');
-  drawTutorialMap();
 
   // to_menu('menu');
   // socket.emit('add_user', {key: my_key, info: you});

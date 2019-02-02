@@ -86,3 +86,19 @@ socket.on('sync', data => { if(data.game.creator_key == my_key || data.game.conn
 
 	updatePlayersParams();
 }});
+
+socket.on('sync_stats', data => {
+	VK.api('storage.get', {key: "all_users", global: true}, function(res){
+		$('#all-users').text(`${res.response}`);
+	});
+
+	VK.api('storage.get', {key: "online_users", global: true}, function(res){
+		$('#online-users').text(`${res.response}`);
+	});
+});
+
+window.addEventListener("beforeunload", function (e) {
+	VK.api('storage.get', {key: "online_users", global: true}, function(res){
+		VK.api('storage.set', {key: "online_users", global: true, value: (res.response)*1-1}, function(){});
+	});
+});
