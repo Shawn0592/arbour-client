@@ -97,8 +97,9 @@ socket.on('sync_stats', data => {
 	});
 });
 
-window.addEventListener("beforeunload", function (e) {
+VK.addCallback("onLocationChanged", function() {
 	VK.api('storage.get', {key: "online_users", global: true}, function(res){
 		VK.api('storage.set', {key: "online_users", global: true, value: (res.response)*1-1}, function(){});
 	});
+	socket.emit('sync_stats');
 });
